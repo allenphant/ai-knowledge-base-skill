@@ -89,13 +89,58 @@ graph TD
 
 ## 🛠️ Usage & Trigger Phrases
 
-You can manually trigger the skill in your preferred CLI using `/skill ai-knowledge-base`, or just paste a link. The agent will automatically detect AI-related intents and present you with interactive choices.
+**Gemini CLI** — manually invoke with:
+```
+/skill ai-knowledge-base
+```
+
+**Claude Code** — no manual command needed. The skill auto-triggers whenever you paste a URL or send an AI-related research request.
 
 **Trigger Examples:**
 - *"Can you analyze this NotebookLM tutorial? [YouTube URL]"*
 - *"Add this to my knowledge base: [Threads URL]"*
 - *"Compare LangChain and CrewAI based on my existing notes."*
 - *"Read this GitHub repo and make a deep dive note: [GitHub URL]"*
+
+## 💬 Interactive Q&A — What to Expect After You Send a Request
+
+Once triggered, the agent guides you through a short decision sequence **before** it starts working. Here's a map of every question you might be asked:
+
+### Stage 1 — Core Configuration (asked every time)
+
+| Question | Options | What It Controls |
+|----------|---------|-----------------|
+| **Depth** | `Shallow` / `Medium` / `Deep` | How exhaustively the agent researches the topic |
+| **Compare** | `Yes` / `No` | Whether to compare against tools/concepts already in your vault |
+| **Vault** | `Yes` / `No` | Whether to save a permanent Obsidian note |
+| **Slides** | `Yes` / `No` | Whether to generate an HTML presentation from the findings |
+
+**Depth explained:**
+- **Shallow** — reads only the URL you provided + your existing notes. Fast, minimal tokens. Best for *"just tell me what this is."*
+- **Medium** — fetches the URL, then runs web searches to verify claims and find counterpoints.
+- **Deep** — full competitive analysis: searches for rivals, compares pricing, checks GitHub stars, and builds a comparison table.
+
+### Stage 2 — Video-Specific (only if input is a video URL)
+
+| Question | Options | What It Controls |
+|----------|---------|-----------------|
+| **Analysis Flavor** | `Knowledge (Text)` / `Visual (Scenes)` | Mode A vs. Mode B |
+| **Transcription Engine** *(Mode A only)* | `NotebookLM (Cloud)` / `Local Whisper` | Where the audio is transcribed |
+
+- **Knowledge / Mode A** — transcribes the audio for a full semantic note. Use this for lectures, tutorials, and talks.
+- **Visual / Mode B** — extracts video frames for scene and action analysis. Use this for demos, UI walkthroughs, and design videos.
+- **NotebookLM** — routes to your configured MCP server (cloud, high-context).
+- **Local Whisper** — runs `faster_whisper_srt.py` fully offline (privacy-safe).
+
+### Stage 3 — Slides Sub-Configuration (only if Slides = Yes)
+
+| Question | What to Provide |
+|----------|----------------|
+| **Purpose** | Who will see this? (e.g., team demo, personal reference, client pitch) |
+| **Length** | Approximate number of slides |
+| **Mood / Vibe** | e.g., Professional, Creative, Calm, Inspired |
+
+After answering, the agent generates **3 live HTML previews** and opens them in your browser — you pick the one you like before the final version is built.
 
 ## 🙏 Acknowledgments
 
@@ -191,13 +236,58 @@ graph TD
 
 ## 🛠️ 如何觸發與使用 (Usage)
 
-你可以在你的 CLI 中輸入 `/skill ai-knowledge-base` 來手動啟動，或者直接貼上網址，Agent 發現與 AI 知識學習有關就會自動觸發，並透過終端機選單一步步引導你。
+**Gemini CLI** — 手動啟動指令：
+```
+/skill ai-knowledge-base
+```
+
+**Claude Code** — 不需要任何指令。只要你貼上網址或發出 AI 相關的研究請求，Skill 就會自動觸發。
 
 **觸發語句範例：**
 - *"幫我把這個 NotebookLM 教學存進知識庫：[YouTube 網址]"*
 - *"這篇 Threads 在講什麼？幫我建檔：[Threads 網址]"*
 - *"根據我現有的筆記，比較 LangChain 跟 CrewAI 的優缺點。"*
 - *"幫我深度分析這個 GitHub Repo 的原始碼架構：[GitHub 網址]"*
+
+## 💬 觸發後的互動問答 — Agent 會問你什麼？
+
+送出請求後，Agent 會在開始處理前引導你完成一段決策流程。以下是所有可能出現的問題完整對照表：
+
+### 第一階段 — 核心設定（每次都會問）
+
+| 問題 | 選項 | 控制的功能 |
+|------|------|-----------|
+| **研究深度 (Depth)** | `Shallow` / `Medium` / `Deep` | Agent 挖掘資料的廣度與深度 |
+| **比較分析 (Compare)** | `Yes` / `No` | 是否與知識庫中已有的工具或概念進行對比 |
+| **存入知識庫 (Vault)** | `Yes` / `No` | 是否將結果存為 Obsidian Markdown 筆記 |
+| **生成簡報 (Slides)** | `Yes` / `No` | 是否將研究成果轉為 HTML 簡報 |
+
+**深度選項說明：**
+- **Shallow（淺層）** — 僅讀取你提供的網址 + 現有筆記。速度最快、Token 消耗最低。適合「快速告訴我這是什麼」。
+- **Medium（中層）** — 讀取網址後，額外進行網路搜尋以驗證說法並尋找反面觀點。
+- **Deep（深層）** — 完整競品分析：主動搜尋競爭對手、比較定價、查詢 GitHub Stars，並建立完整比較表。
+
+### 第二階段 — 影片專屬（僅當輸入來源為影片網址時）
+
+| 問題 | 選項 | 控制的功能 |
+|------|------|-----------|
+| **分析方式** | `Knowledge (知識/語音)` / `Visual (視覺/畫面)` | Mode A 或 Mode B |
+| **轉錄引擎** *（僅 Mode A）* | `NotebookLM (雲端)` / `Local Whisper (本地)` | 語音轉文字的處理位置 |
+
+- **Knowledge / Mode A** — 轉錄影片音訊，生成完整語意筆記。適合講座、教學、演講類影片。
+- **Visual / Mode B** — 擷取影片畫格，分析畫面動作與視覺內容。適合操作示範、UI Walkthrough、設計類影片。
+- **NotebookLM** — 轉交給你設定好的 MCP Server 處理（雲端、高語境推理）。
+- **Local Whisper** — 在本地端執行 `faster_whisper_srt.py`，完全離線，保護隱私。
+
+### 第三階段 — 簡報子設定（僅當 Slides = Yes 時）
+
+| 問題 | 填寫內容 |
+|------|---------|
+| **目的 (Purpose)** | 這份簡報給誰看？（例：團隊展示、個人備忘、客戶提案） |
+| **長度 (Length)** | 預計約幾頁投影片 |
+| **風格感受 (Mood / Vibe)** | 例：Professional（專業）、Creative（創意）、Calm（沉穩）、Inspired（激勵） |
+
+回答完畢後，Agent 會立即生成 **3 個可實際預覽的 HTML 檔案**並在瀏覽器中開啟——你親眼看過、選定喜歡的風格後，才會輸出最終版本。
 
 ## 🙏 鳴謝與開源聲明
 

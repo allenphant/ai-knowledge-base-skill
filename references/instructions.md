@@ -108,7 +108,7 @@ When processing a video source, determine the analysis mode based on user prefer
 - **Goal**: Understand actions, aesthetics, and non-verbal cues.
 - **Workflow**:
     1. Download video (low-res) using local tools if possible.
-    2. Analyze using Multimodal Vision (describe scenes, OCR on-screen text, identify visual steps). A bundled local script is available at `C:\Users\raging\Desktop\Vibe_coding\Learning\vision_analyzer.py` (or bundled in `tools/vision/vision_analyzer.py` post-install).
+    2. Analyze using Multimodal Vision (describe scenes, OCR on-screen text, identify visual steps). A bundled local script is available at `{{SKILL_DIR}}\tools\vision\vision_analyzer.py`.
     3. Format output as a "Visual Storyboard" or "Action Log" in Obsidian.
 
 **Decision Logic**: 
@@ -135,7 +135,7 @@ If **Mode A (Knowledge-Centric)** is selected, ask the user for their preferred 
 - **Goal**: High-fidelity local transcription using the `faster-whisper-srt` tool.
 - **Workflow**:
     1. Download the media file using `yt-dlp`.
-    2. **Execute Local Tool**: Run `python C:\Users\raging\Desktop\Vibe_coding\video2srt\faster-whisper-srt\faster_whisper_srt.py [file_path] --model large-v3-turbo`.
+    2. **Execute Local Tool**: Run `python {{SKILL_DIR}}\tools\faster-whisper-srt\faster_whisper_srt.py [file_path] --model large-v3-turbo`.
     3. **Read SRT**: Find the generated `.srt` file in the same directory.
     4. **AI Synthesis**: Read the full SRT content, clean up the timestamps, and perform semantic indexing as described in Mode A.
 
@@ -547,7 +547,7 @@ When the user requests a presentation, slide deck, or HTML summary of a topic:
 - **Step C:** AFTER the previews are opened, use a NEW `ask_user` call to ask the user which of the 3 previewed styles they prefer (e.g., Preview 1, Preview 2, or Preview 3). DO NOT use text-based choice menus for the final style selection until the user has seen the rendered HTML.
 
 ### 3. HTML Generation
-- Use `C:\Users\raging\.gemini\skills\frontend-slides\html-template.md` as the base.
+- Use `{{SKILL_DIR}}\tools\frontend-slides\html-template.md` as the base.
 - Include the full contents of `{{SKILL_DIR}}\tools\frontend-slides\viewport-base.css` in the `<style>` block.
 - Inject the synthesized content into the slides, following the Content Density Limits defined in Frontend Slides instructions.
 - Add Inline Editing support by default.

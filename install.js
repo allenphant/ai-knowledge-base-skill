@@ -55,7 +55,7 @@ function updateInstructionsPaths(targetSkillDir) {
 
     // Replace the placeholder with the actual absolute path to the skill directory
     // We use split/join for global replacement of a plain string
-    instructions = instructions.split('{{SKILL_DIR}}').join(targetSkillDir.replace(/\\/g, '\\\\'));
+    instructions = instructions.split('{{SKILL_DIR}}').join(targetSkillDir);
 
     fs.writeFileSync(instructionsPath, instructions, 'utf8');
     return instructionsPath;
