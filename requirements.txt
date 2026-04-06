@@ -1,0 +1,12 @@
+# Python dependencies for AI Knowledge Base Skill
+# Core extraction tools for downloading and analyzing media
+yt-dlp>=2023.11.16
+
+# Required for Local Whisper transcription
+faster-whisper>=1.0.0
+
+# Required for vision analysis (frame extraction from videos)
+opencv-python>=4.8.0
+
+# Required if PPT/PPTX conversion is used
+python-pptx>=0.6.22

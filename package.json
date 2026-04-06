@@ -1,0 +1,28 @@
+{
+  "name": "agent-skill-ai-knowledge-base",
+  "version": "2.6.0",
+  "description": "An AI Knowledge Base skill for Gemini CLI and Claude Code with automated video transcription, presentation generation, and Obsidian vault integration.",
+  "main": "install.js",
+  "scripts": {
+    "postinstall": "node install.js"
+  },
+  "keywords": [
+    "gemini",
+    "claude",
+    "cli",
+    "agent",
+    "skill",
+    "ai",
+    "knowledge-base",
+    "obsidian",
+    "frontend-slides",
+    "whisper"
+  ],
+  "author": "raging",
+  "license": "MIT",
+  "dependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/raging/ai-knowledge-base-skill"
+  }
+}
