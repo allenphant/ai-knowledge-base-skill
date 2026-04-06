@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Knowledge Base Skill 深度研究簡報</title>
+    <!-- Fonts: Cormorant Garamond (Display) & Source Serif 4 (Body) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&display=swap" rel="stylesheet">
+    
+    <style>
+        /* === VIEWPORT-BASE.CSS (MANDATORY) === */
+        html, body { height: 100%; overflow-x: hidden; margin: 0; padding: 0; }
+        html { scroll-snap-type: y mandatory; scroll-behavior: smooth; }
+        .slide { width: 100vw; height: 100vh; height: 100dvh; overflow: hidden; scroll-snap-align: start; display: flex; flex-direction: column; position: relative; }
+        .slide-content { flex: 1; display: flex; flex-direction: column; justify-content: center; max-height: 100%; overflow: hidden; padding: var(--slide-padding); }
+        :root {
+            --title-size: clamp(2rem, 8vw, 6rem);
+            --h2-size: clamp(1.5rem, 5vw, 3.5rem);
+            --h3-size: clamp(1.2rem, 3vw, 2rem);
+            --body-size: clamp(1rem, 2vw, 1.5rem);
+            --small-size: clamp(0.8rem, 1.2vw, 1.1rem);
+            --slide-padding: clamp(2rem, 8vw, 10vw);
+            --content-gap: clamp(1rem, 3vw, 3rem);
+            --element-gap: clamp(0.5rem, 1.5vw, 1.5rem);
+            
+            /* Style B: Paper & Ink Colors */
+            --bg-page: #faf9f7;
+            --text-primary: #1a1a1a;
+            --text-secondary: #4a4a4a;
+            --accent-crimson: #c41e3a;
+            --accent-soft: #e8d4c0;
+            --font-display: 'Cormorant Garamond', serif;
+            --font-body: 'Source Serif 4', serif;
+        }
+        img, .image-container { max-width: 100%; max-height: min(50vh, 400px); object-fit: contain; }
+        @media (max-height: 700px) { :root { --slide-padding: 2rem; --title-size: 3rem; --h2-size: 2rem; } }
+        @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.2s !important; } html { scroll-behavior: auto; } }
+
+        /* === STYLE B: CUSTOM AESTHETICS === */
+        body { background: var(--bg-page); color: var(--text-primary); font-family: var(--font-body); line-height: 1.6; }
+        h1, h2, .display-text { font-family: var(--font-display); font-weight: 600; line-height: 1.1; margin: 0; }
+        .accent-line { width: 60px; height: 1px; background: var(--accent-crimson); margin-bottom: var(--element-gap); transform-origin: left; animation: scaleIn 1s ease-out forwards; }
+        .slide-number { position: absolute; top: 2rem; left: 2rem; font-family: var(--font-display); font-style: italic; font-size: 1.2rem; opacity: 0.5; }
+        
+        .bullet-list { list-style: none; padding: 0; display: flex; flex-direction: column; gap: var(--element-gap); }
+        .bullet-list li { font-size: var(--body-size); position: relative; padding-left: 1.5rem; opacity: 0; transform: translateX(-20px); animation: slideIn 0.8s ease-out forwards; }
+        .bullet-list li::before { content: "—"; position: absolute; left: 0; color: var(--accent-crimson); }
+        
+        .table-container { width: 100%; overflow-x: auto; margin-top: var(--element-gap); }
+        table { width: 100%; border-collapse: collapse; font-size: var(--small-size); }
+        th { text-align: left; padding: 1rem; border-bottom: 2px solid var(--text-primary); font-family: var(--font-display); font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; }
+        td { padding: 1rem; border-bottom: 1px solid #ddd; }
+        tr:last-child td { border-bottom: none; }
+        .check { color: #2ecc71; font-weight: bold; }
+
+        @keyframes scaleIn { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+        @keyframes slideIn { to { opacity: 1; transform: translateX(0); } }
+        @keyframes fadeIn { to { opacity: 1; } }
+
+        /* === INTERACTIVE EDITING (PHASE 3) === */
+        [contenteditable="true"]:hover { outline: 2px dashed var(--accent-soft); border-radius: 4px; }
+        [contenteditable="true"]:focus { outline: 2px solid var(--accent-crimson); background: rgba(255,255,255,0.8); }
+    </style>
+</head>
+<body>
+
+    <!-- Slide 1: Title -->
+    <section class="slide">
+        <div class="slide-number">01</div>
+        <div class="slide-content" style="text-align: center; align-items: center;">
+            <div class="accent-line" style="margin: 0 auto 2rem; width: 100px;"></div>
+            <h1 contenteditable="true" style="font-size: var(--title-size);">AI Knowledge Base Skill</h1>
+            <p contenteditable="true" style="font-style: italic; font-size: 1.5rem; margin-top: 1rem; opacity: 0; animation: fadeIn 1s ease-out 0.5s forwards;">專為 AI Agent 設計的長短期記憶整合系統</p>
+            <div contenteditable="true" style="margin-top: 3rem; font-size: var(--small-size); text-transform: uppercase; letter-spacing: 0.2em; opacity: 0.6;">Deep Research Report • 2026.04.06</div>
+        </div>
+    </section>
+
+    <!-- Slide 2: The Core Problem -->
+    <section class="slide">
+        <div class="slide-number">02</div>
+        <div class="slide-content">
+            <div class="accent-line"></div>
+            <h2 contenteditable="true">當前挑戰：記憶與成本的權衡</h2>
+            <div style="height: var(--content-gap);"></div>
+            <ul class="bullet-list">
+                <li style="animation-delay: 0.2s;"><strong>Token 膨脹</strong>：知識庫越大，每次讀取的成本越高，最終導致 Context 溢出。</li>
+                <li style="animation-delay: 0.4s;"><strong>知識斷層</strong>：AI 往往只能處理當前視窗，無法有效與舊筆記建立關聯。</li>
+                <li style="animation-delay: 0.6s;"><strong>整理摩擦</strong>：手動建立雙向連結對於開發者而言過於耗時且違反「Vibe Coding」。</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Slide 3: The Registry Mechanism -->
+    <section class="slide">
+        <div class="slide-number">03</div>
+        <div class="slide-content">
+            <div class="accent-line"></div>
+            <h2 contenteditable="true">核心技術：註冊表檢索 (Registry)</h2>
+            <div style="height: var(--content-gap);"></div>
+            <p contenteditable="true" style="margin-bottom: var(--element-gap);">這是一項旨在極大化 Token 效率的設計哲學：</p>
+            <ul class="bullet-list">
+                <li style="animation-delay: 0.2s;"><strong>輕量索引</strong>：維護一個 JSON 檔案，儲存標籤 (Tags) 與核心概念。</li>
+                <li style="animation-delay: 0.4s;"><strong>精準命中</strong>：僅當 2 個標籤或 1 個概念重疊時，Agent 才會讀取全文。</li>
+                <li style="animation-delay: 0.6s;"><strong>線性縮放</strong>：即便擁有 200 則筆記，檢索成本依然維持在低水位。</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Slide 4: Obsidian Integration -->
+    <section class="slide">
+        <div class="slide-number">04</div>
+        <div class="slide-content">
+            <div class="accent-line"></div>
+            <h2 contenteditable="true">與 Obsidian 深度整合</h2>
+            <div style="height: var(--content-gap);"></div>
+            <div class="grid" style="grid-template-columns: 1fr 1fr; gap: 4rem;">
+                <div>
+                    <h3 contenteditable="true">自動化建構</h3>
+                    <ul class="bullet-list">
+                        <li>自動生成雙向連結 <code>[[link]]</code></li>
+                        <li>標準化 YAML Frontmatter</li>
+                        <li>自動更新 _index.md 索引</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 contenteditable="true">智能關聯</h3>
+                    <ul class="bullet-list">
+                        <li>基於語意標籤的自動分類</li>
+                        <li>發現跨檔案的潛在連結</li>
+                        <li>實現「認知累積」而非單純紀錄</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Slide 5: Deep Comparison Table -->
+    <section class="slide">
+        <div class="slide-number">05</div>
+        <div class="slide-content">
+            <div class="accent-line"></div>
+            <h2 contenteditable="true">競爭力對比：為何選擇此 Skill？</h2>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>維度</th>
+                            <th>AI Knowledge Skill</th>
+                            <th>Obsidian (原生)</th>
+                            <th>Mem.ai</th>
+                            <th>Heptabase</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Agent 原生性</strong></td>
+                            <td class="check">高 (專為 CLI 設計)</td>
+                            <td>低 (需外掛)</td>
+                            <td>高 (雲端)</td>
+                            <td>中</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Token 效率</strong></td>
+                            <td class="check">極高 (Registry)</td>
+                            <td>低 (全讀取)</td>
+                            <td>N/A</td>
+                            <td>N/A</td>
+                        </tr>
+                        <tr>
+                            <td><strong>數據隱私</strong></td>
+                            <td class="check">極高 (本地)</td>
+                            <td class="check">極高</td>
+                            <td>低 (雲端)</td>
+                            <td>中</td>
+                        </tr>
+                        <tr>
+                            <td><strong>自定義程度</strong></td>
+                            <td>中 (框架預設)</td>
+                            <td class="check">極高 (萬種外掛)</td>
+                            <td>低</td>
+                            <td>中</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Slide 6: The Slides Integration -->
+    <section class="slide">
+        <div class="slide-number">06</div>
+        <div class="slide-content">
+            <div class="accent-line"></div>
+            <h2 contenteditable="true">協同效應：Frontend Slides</h2>
+            <div style="height: var(--content-gap);"></div>
+            <p contenteditable="true">知識不應止於筆記，應轉化為展示：</p>
+            <ul class="bullet-list">
+                <li style="animation-delay: 0.2s;"><strong>Show, Don't Tell</strong>：自動將研究結果轉化為 HTML 簡報。</li>
+                <li style="animation-delay: 0.4s;"><strong>視覺預覽機制</strong>：在生成前提供多樣化的風格挑選。</li>
+                <li style="animation-delay: 0.6s;"><strong>零依賴部署</strong>：單一 HTML 檔案，支援 Vercel 一鍵發佈。</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Slide 7: Closing -->
+    <section class="slide" style="background: var(--text-primary); color: var(--bg-page);">
+        <div class="slide-number" style="color: var(--bg-page);">07</div>
+        <div class="slide-content" style="text-align: center; align-items: center;">
+            <div class="accent-line" style="background: var(--bg-page); width: 40px; margin: 0 auto 2rem;"></div>
+            <h2 contenteditable="true" style="font-size: var(--h2-size); font-style: italic;">"知識不應只是堆積，而應是織網。"</h2>
+            <p contenteditable="true" style="margin-top: 2rem; opacity: 0.8;">感謝觀看研究簡報</p>
+            <div style="margin-top: 4rem; display: flex; gap: 2rem;">
+                <div contenteditable="true" style="border: 1px solid rgba(255,255,255,0.3); padding: 0.5rem 1.5rem; border-radius: 20px; font-size: 0.8rem;">GitHub Repository</div>
+                <div contenteditable="true" style="border: 1px solid rgba(255,255,255,0.3); padding: 0.5rem 1.5rem; border-radius: 20px; font-size: 0.8rem;">Documentation</div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        /* === NAVIGATION & KEYBOARD === */
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        
+        function goToSlide(n) {
+            if (n < 0 || n >= slides.length) return;
+            currentSlide = n;
+            slides[n].scrollIntoView({ behavior: 'smooth' });
+        }
+
+        window.addEventListener('keydown', (e) => {
+            if (e.target.contentEditable === 'true') return;
+            if (e.key === 'ArrowDown' || e.key === 'ArrowRight' || e.key === ' ') {
+                e.preventDefault();
+                goToSlide(currentSlide + 1);
+            }
+            if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') {
+                e.preventDefault();
+                goToSlide(currentSlide - 1);
+            }
+            if (e.key === 'e' || e.key === 'E') {
+                document.body.classList.toggle('edit-mode');
+            }
+        });
+
+        /* === INLINE EDITING AUTO-SAVE === */
+        document.querySelectorAll('[contenteditable="true"]').forEach(el => {
+            el.addEventListener('blur', () => {
+                const content = document.documentElement.outerHTML;
+                // In a real browser, we'd save to localStorage or via API
+                console.log("Content updated and ready for export.");
+            });
+        });
+
+        // Simple touch/scroll tracking
+        window.addEventListener('scroll', () => {
+            const scrollPos = window.scrollY;
+            const windowHeight = window.innerHeight;
+            currentSlide = Math.round(scrollPos / windowHeight);
+        });
+    </script>
+</body>
+</html>
