@@ -158,7 +158,7 @@ This skill heavily utilizes the incredible presentation logic from the **[fronte
 
 > **[🔴 實際成果展示](https://allenphant.github.io/ai-knowledge-base-skill/demo/ai-knowledge-base-skill-presentation.html)** — 這份簡報就是用本 Skill 對自身 Repo 進行深度研究後產生的真實輸出。
 
-這是一個專為 **AI Agent CLIs (完美相容 Gemini CLI 與 Claude Code)** 設計的高階「知識累積」Skill。它可以接收 AI 工具、網址、社群貼文與 YouTube 影片，將其與你現有的知識進行融合，並自動建立一個極度節省 Token 的 Obsidian 知識庫。它還能將這些知識轉換為精美且包含動畫效果的 HTML 簡報。
+這是一個專為 **AI Agent CLIs (相容 Gemini CLI 與 Claude Code)** 設計的「知識累積」Skill。它可以接收 AI 工具、網址、社群貼文與 YouTube 影片，將其與你現有的知識進行融合，並自動建立一個極度節省 Token 的 Obsidian 知識庫。它還能將這些知識轉換為精美且包含動畫效果的 HTML 簡報。
 
 ## 🚀 核心功能
 1. **Token 極簡知識圖譜**：使用輕量級的 `_registry.json` 來搜尋與關聯 Obsidian 筆記，無需將整個知識庫塞入 LLM 的 Context。你不是在單純存檔，而是在慢慢建立一個網狀連結的「第二大腦」。
@@ -170,7 +170,7 @@ This skill heavily utilizes the incredible presentation logic from the **[fronte
 3. **雙模式影片分析**：
    - **Mode A (知識深度型)**：使用內建的 `faster-whisper-srt` 或雲端 NotebookLM MCP 將影片轉錄為精準逐字稿。
    - **Mode B (視覺動態型)**：使用內建的 `vision_analyzer.py` 擷取影片關鍵影格。
-4. **Subagent 智能委派**：自動將數萬字的長篇字幕丟給子代理人 (若你的 CLI 支援此架構) 進行降噪與總結，確保主 Agent 的記憶體保持乾淨高效。
+4. **Subagent 智能委派**：自動將數萬字的長篇字幕丟給subagent (若你的 CLI 支援此架構) 進行降噪與總結，確保主 Agent 的記憶體保持乾淨高效。
 5. **Frontend Slides 完美整合**：透過「視覺預覽、不盲選」的互動流程，無縫生成零依賴、支援網頁內建編輯的 HTML 簡報檔。
 
 ## 📦 NPM 套件包含了什麼？你還需要安裝什麼？
